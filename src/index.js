@@ -30,7 +30,7 @@ class App extends React.Component {
             const { name, email, picture } = user;
             return (
               <div key={email} className="row">
-                <p><img src={picture.large}/></p>
+                <p><img src={picture.large} alt="" /></p>
                 <div className="info">
                   <p>Name: {name.first}</p>
                   <p>Email Address: {email}</p>
