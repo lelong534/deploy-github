@@ -2,6 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://lelong534.github.io/deploy-github",
   "dependencies": {
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
