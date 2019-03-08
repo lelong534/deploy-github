@@ -1,12 +1,51 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      isLoading: true,
+      users: []
+    };
+  }
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  componentDidMount() {
+    fetch(`https://randomuser.me/api/?results=100`)
+      .then(response => response.json())
+      .then(data =>
+        this.setState({
+          users: data.results,
+          isLoading: false,
+        })
+      )
+  }
+  render() {
+    const { isLoading, users } = this.state;
+    return (
+      <div>
+        <h1>100 Random User</h1>       
+        {!isLoading ? (
+          users.map(user => {
+            const { name, email, picture } = user;
+            return (
+              <div key={email} className="row">
+                <p><img src={picture.large}/></p>
+                <div className="info">
+                  <p>Name: {name.first}</p>
+                  <p>Email Address: {email}</p>
+                  <p>Phone: {user.phone}</p>
+                </div>               
+              </div>            
+            );
+          })
+        ) : (
+          <h3>Loading...</h3>
+        )}
+      </div>
+    );
+  }
+}
+
+
+ReactDOM.render(<App />, document.getElementById("root"));
