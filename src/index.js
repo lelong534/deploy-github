@@ -24,7 +24,7 @@ class App extends React.Component {
     const { isLoading, users } = this.state;
     return (
       <div>
-        <h1>100 Random User</h1>       
+        <h1>Hoàng Pino</h1>       
         {!isLoading ? (
           users.map(user => {
             const { name, email, picture } = user;
